@@ -13,7 +13,7 @@
 /* 0.1. Общие настройки */
 body, html {
     margin: 0;
-    /* ИЗМЕНЕНИЕ: Фиксированная высота всего сайта - 900px */
+    /* Фиксированная высота всего сайта - 900px */
     height: 900px; 
 }
 
@@ -123,11 +123,11 @@ body::-webkit-scrollbar {
 #benadryl-gif {
     position: absolute; 
     
-    /* Сдвиг справа от консоли */
-    left: 440px;       
+    /* ИЗМЕНЕНИЕ: Сдвиг справа от консоли: 25px (отступ) + 406px (новая ширина) = 431px */
+    left: 431px;       
     
-    /* ИЗМЕНЕНИЕ: Расчет: 900px (body height) - 377px - 25px = 498px */
-    top: 498px;      
+    /* ИЗМЕНЕНИЕ: Расчет: 900px - 303px (новая высота) - 25px = 572px */
+    top: 572px;      
     z-index: 10;       
     pointer-events: auto; 
 }
@@ -144,11 +144,12 @@ body::-webkit-scrollbar {
     
     bottom: 25px; 
     
-    /* РАЗМЕРЫ КАРТИНКИ */
-    width: 395px; 
-    height: 377px; 
+    /* ИЗМЕНЕНИЕ: НОВЫЕ РАЗМЕРЫ КАРТИНКИ (406x303) */
+    width: 406px; 
+    height: 300px; 
     
-    background-image: url('MeatConsole.png'); 
+    /* ИМЯ ФАЙЛА ОСТАЕТСЯ MeatConsole2.png */
+    background-image: url('MeatConsole2.png'); 
     background-size: 100% 100%; 
     background-repeat: no-repeat;
     
@@ -180,20 +181,25 @@ body::-webkit-scrollbar {
 #terminal-content {
     position: absolute;
     
-    top: 70px; 
-    /* Восстановленный левый отступ (55px) */
-    left: 55px; 
+    /* ОСТАВЛЯЮ ВАШИ ОТСТУПЫ (ВЕРОЯТНО, ТРЕБУЕТСЯ КОРРЕКТИРОВКА!) */
+    top: 72px; 
+    left: 90px; 
     
-    width: 230px; 
-    height: 210px; 
+    /* ИЗМЕНЕНИЕ: СКОРРЕКТИРОВАННЫЕ РАЗМЕРЫ (ТРЕБУЕТСЯ КОРРЕКТИРОВКА!) */
+    width: 220px; 
+    height: 145px; 
     
+    /* !!! ВРЕМЕННЫЙ РОЗОВЫЙ ФОН ДЛЯ ОТЛАДКИ !!! */
     background-color: transparent; 
+    
     color: #ffffff; 
     
     display: flex; 
     flex-direction: column;
     
-    border-radius: 18px;
+    /* ЗАКРУГЛЕНИЕ УГЛОВ */
+    border-radius: 24px; 
+    filter: blur(0.2px); 
     overflow: hidden; 
     /* Убираем курсор-стрелку */
     cursor: none !important; 
@@ -240,6 +246,9 @@ body::-webkit-scrollbar {
     caret-color: #ffffff; 
     /* Убираем курсор "печати" (I-beam) */
     cursor: none !important;
+    
+    /* Фильтр размытия (0.2px) для поля ввода */
+    filter: blur(0.2px); 
 }
 
 
@@ -266,4 +275,16 @@ body::after {
     opacity: 0.7; 
     /* Применяем ваш кастомный шрифт */
     font-family: 'CoseType', monospace; 
+}
+
+
+/* ****************************************************** */
+/* 10. КЛАСС ДЛЯ ПРЕДОТВРАЩЕНИЯ СКАЧКА ПРИ ЗАГРУЗКЕ */
+/* ****************************************************** */
+.no-scroll {
+    overflow: hidden !important; 
+    /* Предотвращает попытки браузера сдвинуть скролл вниз */
+    position: fixed; 
+    width: 800px; /* Должен соответствовать ширине body */
+    top: 0;
 }
